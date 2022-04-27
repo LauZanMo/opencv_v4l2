@@ -17,15 +17,31 @@ endif()
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
+find_package(Boost REQUIRED COMPONENTS system thread date_time)
+
+set(OpenCV_DIR "/usr/local/opencv-4.5.5/lib/cmake/opencv4/OpenCV")
+find_package(OpenCV 4 REQUIRED)
+
 # append sources here
-list(APPEND SOURCES
+list(APPEND sources
     src/main.cpp
+)
+
+# append library here
+list(APPEND thirdparty_libraries
+    ${Boost_LIBRARIES}
+    ${OpenCV_LIBRARIES}
 )
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
+    ${Boost_INCLUDE_DIRS}
 )
 
 add_executable(${PROJECT_NAME}
-    ${SOURCES}
+    ${sources}
+)
+
+target_link_libraries(${PROJECT_NAME}
+    ${thirdparty_libraries}
 )
