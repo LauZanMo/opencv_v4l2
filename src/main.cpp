@@ -8,7 +8,8 @@ using namespace std;
 void CamCapture() {
     cv::VideoCapture cap;
     cv::Mat          frame;
-    cap.open(0, cv::CAP_V4L2);
+    cap.open(0);
+    // cap.open(0, cv::CAP_V4L2);
 
     if (cap.isOpened()) {
         cout << "size=" << cap.get(cv::CAP_PROP_FRAME_WIDTH) << "*"
@@ -20,11 +21,10 @@ void CamCapture() {
 
     while (1) {
         cap >> frame;
-        if (frame.empty() || cv::waitKey(1))
-            break;
         cv::imshow("Video", frame);
 
-        boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(49));
+        cv::waitKey(1);
     }
 
     cv::destroyAllWindows();

@@ -19,7 +19,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 find_package(Boost REQUIRED COMPONENTS system thread date_time)
 
-set(OpenCV_DIR "/usr/local/opencv-4.5.5/lib/cmake/opencv4/OpenCV")
+# set(OpenCV_DIR "/usr/local/opencv-4.5.5/lib/cmake/opencv4/OpenCV")
 find_package(OpenCV 4 REQUIRED)
 
 # append sources here
